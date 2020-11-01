@@ -21,14 +21,37 @@ function solve_1(reduced)
 end
 
 #=
-
+    delta = b^2 - 4 * a * c
+    1. if delta < 0 => 0 real solution
+    2. if delta = 0 => 1 solution = -b / (2 * a)
+    3. if delta > 0 => 2 solutions : 
+        x1 = (-b - delta^(1/2)) / (2 * a)
+        x2 = (-b + delta^(1/2)) / (2 * a)
 =#
 function solve_2(reduced)
+    a = reduced[2]
+    b = haskey(reduced, 1) == true ? reduced[1] : 0
+    c = haskey(reduced, 0) == true ? reduced[0] : 0
     println("In solve_2")
+    delta = b ^ 2 - 4 * a * c
+    println("Delta = $delta")
+    if (delta < 0)
+        println("The discriminant is strictly negative, there is no solution.")
+    elseif (delta == 0)
+        x1 = -b / (2 * a)
+        println("The discriminant is null, the solution is:")
+        println(x1)
+    else
+        x1 = (-b - delta^(1/2)) / (2 * a)
+        x2 = (-b + delta^(1/2)) / (2 * a)
+        println("The discriminant is strictly positive, the two solutions are:")
+        println("x1 = $(round(x1, digits=4))")
+        println("x2 = $(round(x2, digits=4))")
+    end
 end
 
 #=
-
+    Send to the different functions depending on the polynom degree
 =#
 function solve_polynom(reduced, max_degree)
     if (max_degree == 0)

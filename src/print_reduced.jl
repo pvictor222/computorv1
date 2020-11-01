@@ -38,7 +38,7 @@ function print_degree(reduced)
             valid = -1
         end
     end
-    println("Polynomial degree: $(Int(max_degree))")
+    println("Polynomial degree: $(abs(max_degree) == round(abs(max_degree)) ? Int(max_degree) : max_degree)")
     if (valid == -1)
         println("Polynoms must only be X^0, X^1 or X^2. I can't solve.")
     elseif (max_degree > 2)
