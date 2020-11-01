@@ -7,7 +7,7 @@ include("print_reduced.jl")
     Send them to "reduce()" to get the reduced form in a dictionnary : 
         reduced = dict("X2" => a, "X1" => b, "X0" => c)
 =#
-function solve_polynom(ARGS)
+function check_polynom(ARGS)
     array = parse_argv(ARGS)
     left = array[1]
     right = array[2]
@@ -18,7 +18,10 @@ function solve_polynom(ARGS)
     temp = print_degree(reduced)
     degree = temp[1]
     valid = temp[2]
-    if (isnothing(findfirst(isequal(degree), [0, 1, 2])) == false)
+    if (valid == 1 && isnothing(findfirst(isequal(degree), [0, 1, 2])) == false)
         println("Polynom de degré correct")
+        return (1, reduce)
+    else
+        return (-1, reduce)
     end
 end
