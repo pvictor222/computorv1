@@ -41,7 +41,7 @@ end
     Split by "=", then "-" and "+"
     Returns arrays for left and right sides
 =#
-function parse(arg)
+function parse_argv(arg)
     left = split(arg, "=")[1]
     right = split(arg, "=")[2]
     left_array = split_negative(left)
