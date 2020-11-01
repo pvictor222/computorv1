@@ -14,12 +14,11 @@ function solve_polynom(ARGS)
     reduced = Dict()
     reduce(left, "left", reduced)
     reduce(right, "right", reduced)
-    println(reduced)
     print_reduced(reduced)
     temp = print_degree(reduced)
     degree = temp[1]
     valid = temp[2]
-    if (indexin(degree, [0, 1, 2]) > 0)
+    if (isnothing(findfirst(isequal(degree), [0, 1, 2])) == false)
         println("Polynom de degré correct")
     end
 end
