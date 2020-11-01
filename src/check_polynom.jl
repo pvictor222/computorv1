@@ -18,10 +18,6 @@ function check_polynom(ARGS)
     temp = print_degree(reduced)
     degree = temp[1]
     valid = temp[2]
-    if (valid == 1 && isnothing(findfirst(isequal(degree), [0, 1, 2])) == false)
-        println("Polynom de degré correct")
-        return (1, reduce)
-    else
-        return (-1, reduce)
-    end
+    max_degree = temp[3]
+    return (valid, reduced, max_degree)
 end
