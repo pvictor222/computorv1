@@ -39,7 +39,11 @@ function solve_2(reduced)
         println("Delta = $delta")
     end
     if (delta < 0)
-        println("The discriminant is strictly negative, there is no solution.")
+        println("The discriminant is strictly negative, there is no solution among real numbers. However, there are two complex solutions:")
+        x1 = (-b - Complex(delta)^(1/2)) / (2 * a)
+        x2 = (-b + Complex(delta)^(1/2)) / (2 * a)
+        println("x1 = $(round(x1, digits=4))")
+        println("x2 = $(round(x2, digits=4))")
     elseif (delta == 0)
         x1 = -b / (2 * a)
         println("The discriminant is null, the solution is:")
@@ -48,8 +52,8 @@ function solve_2(reduced)
         x1 = (-b - delta^(1/2)) / (2 * a)
         x2 = (-b + delta^(1/2)) / (2 * a)
         println("The discriminant is strictly positive, the two solutions are:")
-        println("x1 = $(round(x1, digits=4))")
-        println("x2 = $(round(x2, digits=4))")
+        println("x1 = $(round(x1, digits=4)) + ")
+        println("x2 = $(round(x2, digits=4)) - ")
     end
 end
 
