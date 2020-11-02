@@ -2,7 +2,6 @@
 Project from 42 School
 
 TODO
-- solve X^2
 - Explanation and documentation
 
 BONUS

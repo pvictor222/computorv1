@@ -19,7 +19,7 @@ elseif (check_args(ARGS) == 1)
     if (ret[1] == 1)
         solve_polynom(ret[2], ret[3])
     end
-    println("Do you want to plot the data?")
+    println("Do you want to plot the data? (yes/no)")
     visualize = readline()
     if (lowercase(visualize) == "yes")
         plot_polynom(ret[2])

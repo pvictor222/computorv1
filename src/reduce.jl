@@ -6,7 +6,7 @@ import Base.parse
 function is_string_digit(str)
     value = 1
     for i in 1:length(str)
-        if (isdigit(str[i]) == false)
+        if (isdigit(str[i]) == false && str[i] != '-')
             value = -1
         end
     end
@@ -49,13 +49,10 @@ end
 function reduce(array, side, reduced)
     for i in 1:length(array)
         if (occursin("* X^", array[i]) == false)
-                println("array[i] = $(array[i])")
                 if (is_string_digit(strip(lstrip(array[i]))) == 1)
-                println("is number = $(array[i])")
                 add_to_dict(Base.parse.(Float64, String(strip(lstrip(array[i])))), 0, side, reduced)
             else
                 temp = split(array[i], "*")
-                println("temp = $(temp[1])")
                 add_to_dict(Base.parse.(Float64, String(strip(lstrip(temp[1])))), 1, side, reduced)
             end
         else
