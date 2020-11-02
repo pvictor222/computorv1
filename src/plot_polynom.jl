@@ -1,18 +1,17 @@
 # To install Plots
 #   using Pkg
 #   Pkg.add("Plots")
-#   Pkg.add("UnicodePlots")
 using Plots, Dates
-#using UnicodePlots
 
 #=
-
+    Plot the polynom using the reduced form.
+    Ask the user for left and right limits and the padding.
+    Plot and save as PNG file on the desktop
 =#
 function plot_polynom(reduced)
     a = haskey(reduced, 2) == true ? reduced[2] : 0
     b = haskey(reduced, 1) == true ? reduced[1] : 0
     c = haskey(reduced, 0) == true ? reduced[0] : 0
-
     a = (a == round(a)) ? Int(a) : a
     b = (b == round(b)) ? Int(b) : b
     c = (c == round(c)) ? Int(c) : c
@@ -28,25 +27,25 @@ function plot_polynom(reduced)
     padding = readline()
     padding = (padding == "" || is_string_digit(padding) == -1) ? "5" : padding
 
+    # Check the limits : left > right, or error
     valid = Base.parse.(Float64, limit_left) < Base.parse.(Float64, limit_right) ? 1 : -1
+    # Check the padding : should be within the right - left range, or error
     valid = Base.parse.(Float64, padding) < (Base.parse.(Float64, limit_right) - Base.parse.(Float64, limit_left)) ? valid : -2
 
     if (valid == 1)
-        # data to plot
+        # Create the data to plot
         x = [x for x in Base.parse.(Float64, limit_left):Base.parse.(Float64, padding):Base.parse.(Float64, limit_right)];
         y = [a * (i^2) + b * i + c for i in x];
         println(x)
         println(y)
 
-        #use GR module
+        # Use GR module for background
         gr();
         
-        #plot
+        # Plot the axis
         plot(x, y, label="y = $a*x^2 + $b*x + $c")
-        #add points
-        # scatter!(x, y, label="points")
         
-        #save plot
+        # Save the plot on the Desktop in png format
         savefig("~/Desktop/plot$(Dates.format(now(), "HH:MM:SS")).png")
     elseif (valid == -1)
         println("I can't plot this: the left limit should be lower than the right limit.")
