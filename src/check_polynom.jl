@@ -11,7 +11,7 @@ function check_chars(string)
         valid = (occursin(i, "012345678-+=* X^") == true) ? valid : -1
     end
     if (valid == -1)
-        println("Wrong characters have been detected. Please enter a polynomial function of the form: 'a * X^0 + b * X^1 + c * X^2'")
+        println("Wrong characters have been detected. Please enter a polynomial function of the form: 'a * X^0 + b * X^1 = c * X^2'")
     end
     return (valid)
 end

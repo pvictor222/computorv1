@@ -7,7 +7,7 @@
 =#
 function check_args(ARGS)
     if (length(ARGS) > 1)
-        println("""You entered too many arguments. Please enter a polynomial function of the form: "a * X^0 + b * X^1 + c * X^2" """)
+        println("""You entered too many arguments. Please enter a polynomial function of the form: "a * X^0 + b * X^1 = c * X^2" """)
         return (-1)
     else
         return (1)

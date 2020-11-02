@@ -39,8 +39,6 @@ function plot_polynom(reduced)
         # Create the data to plot
         x = [x for x in Base.parse.(Float64, limit_left):Base.parse.(Float64, padding):Base.parse.(Float64, limit_right)];
         y = [a * (i^2) + b * i + c for i in x];
-        println(x)
-        println(y)
 
         # Use GR module for background
         gr();

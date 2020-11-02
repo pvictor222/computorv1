@@ -13,7 +13,7 @@ include("src/plot_polynom.jl")
 =#
 
 if (length(ARGS) < 1 || ARGS[1] == "")
-    println("Please enter a polynomial function of the form: 'a * X^0 + b * X^1 + c * X^2'")
+    println("Please enter a polynomial function of the form: 'a * X^0 + b * X^1 = c * X^2'")
     input = readline()
 else
     input = ARGS[1]
