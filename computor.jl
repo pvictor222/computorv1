@@ -9,7 +9,7 @@ include("src/plot_polynom.jl")
         ==> ret[1] = 1 if valid, otherwise -1
         ==> ret[2] = reduced (the reduced polynom)
         ==> ret[3] = max_degree
-    3. Asks the user, if "yes" send to plot_polynom() to visualize
+    3. Asks the user, if "yes" send to plot_polynom() to visualize (only if valid and max_degree = 2)
 =#
 
 if (ARGS == "")
@@ -18,10 +18,12 @@ elseif (check_args(ARGS) == 1)
     ret = check_polynom(ARGS[1])
     if (ret[1] == 1)
         solve_polynom(ret[2], ret[3])
-    end
-    println("Do you want to plot the data? (yes/no)")
-    visualize = readline()
-    if (lowercase(visualize) == "yes")
-        plot_polynom(ret[2])
+        if (ret[3] <= 2)
+            println("Do you want to plot the data? (yes/no)")
+            visualize = readline()
+            if (lowercase(visualize) == "yes")
+                plot_polynom(ret[2])
+            end
+        end
     end
 end
