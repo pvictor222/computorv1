@@ -1,13 +1,15 @@
 import Base.parse
 
 #=
-    Removes all the keys with a 0 value
+    Removes all the keys with a 0 value (only if more than 2 keys)
 =#
 function clean_reduced(reduced)
-    key_set = sort([key for key in keys(reduced)])
-    for key in key_set
-        if (reduced[key] == 0)
-            pop!(reduced, key)
+    if (length(reduced) > 2)
+        key_set = sort([key for key in keys(reduced)])
+        for key in key_set
+            if (reduced[key] == 0)
+                pop!(reduced, key)
+            end
         end
     end
 end

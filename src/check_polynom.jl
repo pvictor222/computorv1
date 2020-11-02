@@ -8,7 +8,7 @@ include("print_reduced.jl")
 function check_chars(string)
     valid = 1
     for i in string
-        valid = (occursin(i, "012345678-+=* X.^") == true) ? valid : -1
+        valid = (occursin(i, "0123456789-+=* X.^") == true) ? valid : -1
     end
     if (valid == -1)
         println("Wrong characters have been detected. Please enter a polynomial function of the form: 'a * X^0 + b * X^1 = c * X^2'")
