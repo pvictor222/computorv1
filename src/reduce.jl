@@ -62,7 +62,7 @@ function reduce(array, side, reduced)
         else
             if (occursin("*", array[i]) == false)
                 temp = split(array[i], "X^")
-                add_to_dict(Base.parse.(Float64, String(rstrip(lstrip(temp[1])))), Base.parse.(Float64, String(rstrip(lstrip(temp[2])))), side, reduced)
+                add_to_dict(1, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))), side, reduced)
             else
                 if (occursin("* X^", array[i]) == true)
                     temp = split(array[i], "* X^")
