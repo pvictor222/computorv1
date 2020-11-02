@@ -5,7 +5,7 @@
     Remove the first element if empty
 =#
 function split_negative(str)
-    array = split(str, "-")
+    array = split(str, " -")
     for i in 1:length(array)
         array[i] = rstrip(lstrip(array[i]))
     end
@@ -26,7 +26,7 @@ end
 function split_positive(array)
     array_return = []
     for i in 1:length(array)
-        array_return = vcat(array_return, split(array[i], "+"))
+        array_return = vcat(array_return, split(array[i], " +"))
     end
     for i in 1:length(array_return)
         array_return[i] = rstrip(lstrip(array_return[i]))
