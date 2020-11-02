@@ -32,9 +32,12 @@ function solve_2(reduced)
     a = reduced[2]
     b = haskey(reduced, 1) == true ? reduced[1] : 0
     c = haskey(reduced, 0) == true ? reduced[0] : 0
-    println("In solve_2")
     delta = b ^ 2 - 4 * a * c
-    println("Delta = $delta")
+    println("Do you want to print the discriminant? (yes/no)")
+    verbose = readline()
+    if (verbose != "" && lowercase(verbose) == "yes")
+        println("Delta = $delta")
+    end
     if (delta < 0)
         println("The discriminant is strictly negative, there is no solution.")
     elseif (delta == 0)
