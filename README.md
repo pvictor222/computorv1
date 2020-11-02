@@ -2,6 +2,9 @@
 Project from 42 School
 Made with Julia language
 
+TODO : 
+- Fix negative numbers error
+
 *How it works*
 - The program asks a user for a polynom of the form : 'a * X^0 + b * X^1 = c * X^2'.
 - If the polynomial degree is 0, 1 or 2, it solves the polynom (if possible).
