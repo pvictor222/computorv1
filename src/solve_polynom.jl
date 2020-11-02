@@ -52,8 +52,8 @@ function solve_2(reduced)
         x1 = (-b - delta^(1/2)) / (2 * a)
         x2 = (-b + delta^(1/2)) / (2 * a)
         println("The discriminant is strictly positive, the two solutions are:")
-        println("x1 = $(round(x1, digits=4)) + ")
-        println("x2 = $(round(x2, digits=4)) - ")
+        println("x1 = $(round(x1, digits=4))")
+        println("x2 = $(round(x2, digits=4))")
     end
 end
 
