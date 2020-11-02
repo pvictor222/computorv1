@@ -42,23 +42,32 @@ end
     Parsing :
         1. If there is no "* X^"
             - Either a single number to add to X^0
-            - Or a X^1
-        2. Else, we split and parse.
+            - Or a X^1. If no number, it's a 1.
+        2. Else, we split and parse. If no number, it's a 1.
     Numbers from the right side are subtracted and the left side is added
 =#
 function reduce(array, side, reduced)
     for i in 1:length(array)
-        if (occursin("* X^", array[i]) == false)
+        if (occursin("X^", array[i]) == false)
                 if (is_string_digit(strip(lstrip(array[i]))) == 1)
                 add_to_dict(Base.parse.(Float64, String(strip(lstrip(array[i])))), 0, side, reduced)
             else
-                temp = split(array[i], "*")
-                add_to_dict(Base.parse.(Float64, String(strip(lstrip(temp[1])))), 1, side, reduced)
+                if (occursin("* X", array[i]) == true || occursin("*X", array[i]) == true)
+                    temp = split(array[i], "*")
+                    add_to_dict(Base.parse.(Float64, String(strip(lstrip(temp[1])))), 1, side, reduced)
+                else
+                    add_to_dict(1, 1, side, reduced)
+                end
             end
         else
-            temp = split(array[i], "* X^")
-            x = Base.parse.(Float64, String(rstrip(lstrip(temp[1]))))
-            add_to_dict(x, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))), side, reduced)
+            if (occursin(array[i], "*") == false)
+                temp = split(array[i], "X^")
+                add_to_dict(1, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))), side, reduced)
+            else
+                temp = split(array[i], "* X^")
+                x = Base.parse.(Float64, String(rstrip(lstrip(temp[1]))))
+                add_to_dict(x, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))), side, reduced)
+            end
         end
     end
 end
