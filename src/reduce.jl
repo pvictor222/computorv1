@@ -1,5 +1,17 @@
-
 import Base.parse
+
+#=
+    Checks if the value is numeric
+=#
+function is_string_digit(str)
+    value = 1
+    for i in 1:length(str)
+        if (isdigit(str[i]) == false)
+            value = -1
+        end
+    end
+    return (value)
+end
 
 #=
     Adds the key and value to the dictionnary.
@@ -37,28 +49,19 @@ end
 function reduce(array, side, reduced)
     for i in 1:length(array)
         if (occursin("* X^", array[i]) == false)
-            if (isa(strip(lstrip(array[i])), Number))
+                println("array[i] = $(array[i])")
+                if (is_string_digit(strip(lstrip(array[i]))) == 1)
+                println("is number = $(array[i])")
                 add_to_dict(Base.parse.(Float64, String(strip(lstrip(array[i])))), 0, side, reduced)
             else
                 temp = split(array[i], "*")
+                println("temp = $(temp[1])")
                 add_to_dict(Base.parse.(Float64, String(strip(lstrip(temp[1])))), 1, side, reduced)
             end
         else
             temp = split(array[i], "* X^")
             x = Base.parse.(Float64, String(rstrip(lstrip(temp[1]))))
-            if (side == "left")
-                if haskey(reduced, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))))
-                    reduced[Base.parse.(Float64, String(rstrip(lstrip(temp[2]))))] += x
-                else
-                    push!(reduced, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))) => x)
-                end
-            else
-                if haskey(reduced, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))))
-                    reduced[Base.parse.(Float64, String(rstrip(lstrip(temp[2]))))] -= x
-                else
-                    push!(reduced, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))) => -x)
-                end
-            end
+            add_to_dict(x, Base.parse.(Float64, String(rstrip(lstrip(temp[2])))), side, reduced)
         end
     end
 end

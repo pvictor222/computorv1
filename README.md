@@ -8,9 +8,9 @@ TODO
 BONUS
     OK
 - Check the number of inputs
-- Visualization (only if the user asks for it)
 - Processing natural language equations
     TODO
+- Visualization (only if the user asks for it) => ask for limits
 - Print the delta and steps
 - If no input, asks for input
 - Main de test ?
