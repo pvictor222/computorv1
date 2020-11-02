@@ -9,9 +9,9 @@ BONUS
     OK
 - Check the number of inputs
 - Visualization (only if the user asks for it)
+- Processing natural language equations
     TODO
 - Print the delta and steps
-- check the parsing of "5 * X^0 = 0" ==> i.e. natural language
 - If no input, asks for input
 - Main de test ?
 

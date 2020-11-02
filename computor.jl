@@ -5,12 +5,11 @@ include("src/plot_polynom.jl")
 
 #=
     1. Check the number of args
-    2. Check that the args are proper
-    3. Send to check_polynom()
+    2. Send to check_polynom()
         ==> ret[1] = 1 if valid, otherwise -1
         ==> ret[2] = reduced (the reduced polynom)
         ==> ret[3] = max_degree
-    4. Asks the user, if "yes" send to plot_polynom() to visualize
+    3. Asks the user, if "yes" send to plot_polynom() to visualize
 =#
 
 if (ARGS == "")
