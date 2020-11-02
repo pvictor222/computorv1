@@ -28,20 +28,29 @@ function plot_polynom(reduced)
     padding = readline()
     padding = (padding == "" || is_string_digit(padding) == -1) ? "5" : padding
 
-    # data to plot
-    x = [x for x in Base.parse.(Float64, limit_left):Base.parse.(Float64, padding):Base.parse.(Float64, limit_right)];
-    y = [a * (i^2) + b * i + c for i in x];
-    println(x)
-    println(y)
+    valid = Base.parse.(Float64, limit_left) < Base.parse.(Float64, limit_right) ? 1 : -1
+    valid = Base.parse.(Float64, padding) < (Base.parse.(Float64, limit_right) - Base.parse.(Float64, limit_left)) ? valid : -2
 
-    #use GR module
-    gr();
-    
-    #plot
-    plot(x, y, label="y = $a*x^2 + $b*x + $c")
-    #add points
-    # scatter!(x, y, label="points")
-    
-    #save plot
-    savefig("~/Desktop/plot$(Dates.format(now(), "HH:MM:SS")).png")
+    if (valid == 1)
+        # data to plot
+        x = [x for x in Base.parse.(Float64, limit_left):Base.parse.(Float64, padding):Base.parse.(Float64, limit_right)];
+        y = [a * (i^2) + b * i + c for i in x];
+        println(x)
+        println(y)
+
+        #use GR module
+        gr();
+        
+        #plot
+        plot(x, y, label="y = $a*x^2 + $b*x + $c")
+        #add points
+        # scatter!(x, y, label="points")
+        
+        #save plot
+        savefig("~/Desktop/plot$(Dates.format(now(), "HH:MM:SS")).png")
+    elseif (valid == -1)
+        println("I can't plot this: the left limit should be lower than the right limit.")
+    else
+        println("I can't plot this: the padding should be within the range of the left and right limits.")
+    end
 end
