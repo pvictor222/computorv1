@@ -1,12 +1,26 @@
 import Base.parse
 
 #=
+    Removes all the keys with a 0 value
+=#
+function clean_reduced(reduced)
+    key_set = sort([key for key in keys(reduced)])
+    for key in key_set
+        if (reduced[key] == 0)
+            pop!(reduced, key)
+        end
+    end
+end
+
+#=
     Prints the reduced form of the polynom using the "reduced" dictionnary
-        1. Get all the keys
-        2. If the decimals are 0, removes them
-        3. For each key, prints "+" (if not the first term) or "-" then "a * X^key"
+        1. Call clean_reduced(reduced) to remove the keys with a 0 value
+        2. Get all the keys
+        3. If the decimals are 0, removes them
+        4. For each key, prints "+" (if not the first term) or "-" then "a * X^key"
 =#
 function print_reduced(reduced)
+    clean_reduced(reduced)
     key_set = sort([key for key in keys(reduced)])
     print("Reduced form: ")
     for key in key_set
