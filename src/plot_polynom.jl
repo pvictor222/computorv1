@@ -6,7 +6,7 @@ using Plots, Dates
 #=
     Plot the polynom using the reduced form.
     Ask the user for left and right limits and the padding.
-    Plot and save as PNG file on the desktop
+    Plot and save as pdf file on the desktop
 =#
 function plot_polynom(reduced)
     a = haskey(reduced, 2) == true ? reduced[2] : 0
@@ -16,7 +16,7 @@ function plot_polynom(reduced)
     b = (b == round(b)) ? Int(b) : b
     c = (c == round(c)) ? Int(c) : c
 
-    # Ask the user for the limits
+    # Ask the user for the limits, padding and format
     println("What is the left limit on the x-axis? (-100 if no input)")
     limit_left = readline()
     limit_left = (limit_left == "" || is_string_digit(limit_left) == -1) ? "-100" : limit_left
@@ -26,7 +26,10 @@ function plot_polynom(reduced)
     println("What is the padding? (5 if no input)")
     padding = readline()
     padding = (padding == "" || is_string_digit(padding) == -1) ? "5" : padding
-
+    println("Do you want to save the plot as PDF of PNG? PDF is by default. (PDF/PNG)")
+    format = readline()
+    format = (format != "" && lowercase(format) == "png") ? "png" : "pdf"
+    
     # Check the limits : left > right, or error
     valid = Base.parse.(Float64, limit_left) < Base.parse.(Float64, limit_right) ? 1 : -1
     # Check the padding : should be within the right - left range, or error
@@ -45,8 +48,8 @@ function plot_polynom(reduced)
         # Plot the axis
         plot(x, y, label="y = $a*x^2 + $b*x + $c")
         
-        # Save the plot on the Desktop in png format
-        savefig("~/Desktop/plot$(Dates.format(now(), "HH:MM:SS")).png")
+        # Save the plot on the Desktop in pdf format
+        savefig("~/Desktop/plot$(Dates.format(now(), "HH:MM:SS")).$format")
     elseif (valid == -1)
         println("I can't plot this: the left limit should be lower than the right limit.")
     else
