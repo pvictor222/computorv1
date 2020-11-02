@@ -17,7 +17,7 @@ function solve_1(reduced)
     a = reduced[1]
     b = haskey(reduced, 0) == true ? reduced[0] : 0
     println("The solution is:")
-    println(-b/a == round(-b/a) ? Int(-b/a) : -b/a)
+    println(-b/a == round(-b/a) ? Int(-b/a) : (round(-b/a, digits=4)))
 end
 
 #=
